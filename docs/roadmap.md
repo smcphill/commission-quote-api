@@ -18,3 +18,6 @@
 5. **Functional frontend** - basic form that uses `fetch` to call the API with the required parameters
 6. **Simulation** - have `/api/quote` occasionally (randomly) throw an error
 7. **Improved frontend** - introduce a react app for frontend responsibilities
+8. **Docker support** - containerize the app to simplify prerequisite installation
+  - Dockerfile bundling Python/uv, Node.js and Playwright's Chromium binary
+  - Update README.md (how to install & run via Docker)
