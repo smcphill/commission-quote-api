@@ -7,7 +7,7 @@ import uuid
 
 app = Flask(__name__)
 
-FLAT_COMMISSION_RATE = 0.1  # Flat commission rate for all quotes
+COMMISSION_RATE = 0.1  # Flat commission rate for all quotes
 CHAOS_RATE = 0.8
 VALID_API_KEYS = ["alice", "bob"]
 CHAOTIC_API_KEY = "bob"
@@ -83,6 +83,6 @@ def generate_quote(request: QuoteRequest) -> dict:
     # Quote generation logic
     return {
         "quoteId": uuid.uuid4().hex,
-        "commissionRate": FLAT_COMMISSION_RATE,
-        "totalCommission": request.loanAmount * FLAT_COMMISSION_RATE,
+        "commissionRate": COMMISSION_RATE,
+        "totalCommission": request.loanAmount * COMMISSION_RATE,
     }
