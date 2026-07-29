@@ -37,12 +37,15 @@ def request_quote():
         return jsonify({"error": "Missing request"}), 400
 
     try:
-        QuoteRequest(**data)
+        quote_request = QuoteRequest(**data)
     except ValidationError as e:
         invalid_fields = [err["loc"][0] for err in e.errors()]
         return jsonify({"error": f"Invalid {', '.join(invalid_fields)}"}), 400
 
-    return jsonify({"quoteId": "123", "commissionRate": 0.1, "totalCommission": 100000})
+    generated_quote = generate_quote(quote_request)
+
+    return jsonify(generated_quote), 200
+
 
 @app.errorhandler(HTTPException)
 def handle_http_exception(error):
