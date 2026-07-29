@@ -13,11 +13,12 @@
   - Makefile actions: `make lint`, `make test`, `make api-test` and `make browser-test`
   - Add browser test
   - Update README.md (how to lint & test, and how to install pre-requisites)
-3. **API backend** - new route `POST /api/quote` (api-key requirement)
-4. **Security** - api-key presentation & validation
-5. **Functional frontend** - basic form that uses `fetch` to call the API with the required parameters
-6. **Simulation** - have `/api/quote` occasionally (randomly) throw an error
-7. **Docker support** - containerize the app to simplify prerequisite installation
+3. **Functional frontend** - basic form that uses `fetch` to call the API with the required parameters
+4. **API backend** - new route `POST /api/quote` (api-key requirement)
+5. **Security** - api-key presentation & validation
+6. **Secure frontent** - update frontend to supply api-key
+7. **Simulation** - have `/api/quote` occasionally (randomly) throw an error. Update frontend to trigger simulation.
+8. **Docker support** - containerize the app to simplify prerequisite installation
   - Dockerfile bundling Python/uv, Node.js and Playwright's Chromium binary
   - Update README.md (how to install & run via Docker)
-8. **Improved frontend** - introduce a react app for frontend responsibilities
+9. **Improved frontend** - introduce a react app for frontend responsibilities
