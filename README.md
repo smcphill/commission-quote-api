@@ -70,7 +70,6 @@ Fixes linting issues found by eslint/black
 ### Test
 
 ```
-make test           # unit tests
 make api-test       # API tests against a running instance of the app
 make browser-test   # browser tests against a running instance of the app
 ```

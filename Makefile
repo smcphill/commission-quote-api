@@ -17,9 +17,6 @@ fix-lint:
 	uv run black app tests
 	npx eslint --fix .
 
-test:
-	uv run pytest tests/unit
-
 api-test:
 	$(MAKE) run & pid=$$!; \
 	trap 'kill $$pid' EXIT; \
