@@ -5,7 +5,7 @@ def test_generate_quote_with_invalid_risk_band_shows_error(page, base_url):
     page.fill("#loanTermInMonths", "24")
     page.eval_on_selector(
         "#riskBand",
-        "(select) => { select.insertAdjacentHTML('beforeend', '<option value=\"bananas\">bananas</option>'); select.value = 'bananas'; }",
+        "(select) => { select.insertAdjacentHTML('beforeend', '<option value=\"bananas\">bananas</option>'); select.value = 'bananas'; }",  # noqa: E501
     )
     page.click("button[type=submit]")
 
