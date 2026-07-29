@@ -45,6 +45,12 @@ make run
 
 The app will be available at http://localhost:5000/.
 
+#### Runtime constraints
+
+- Loan amount: $1,000 - $5,000,000
+- Loan term (months): 1 - 240 (aka 20 years)
+- Risk band: ["BELOW_AVERAGE", "AVERAGE", "VERY_GOOD", "EXCELLENT"]
+
 ### Lint
 
 ```
