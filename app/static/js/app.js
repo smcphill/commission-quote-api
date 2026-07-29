@@ -26,7 +26,8 @@ form.addEventListener("submit", async (event) => {
     });
 
     if (!response.ok) {
-      throw new Error(`Request failed: ${response.statusText} (${response.status})`);
+      const error = await response.json().catch(() => ({}));
+      throw new Error(error.error ?? `Request failed: ${response.statusText} (${response.status})`);
     }
 
     const quote = await response.json();
