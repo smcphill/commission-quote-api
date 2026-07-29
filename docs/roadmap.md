@@ -18,8 +18,9 @@
 5. **Security** - api-key presentation & validation
 6. **Secure frontent** - update frontend to supply api-key
 7. **Simulation** - have `/api/quote` occasionally (randomly) throw an error. Update frontend to trigger simulation.
-8. **Docker support** - containerize the app to simplify prerequisite installation
+8. **Configuration** - source key configs (rates, limits, keys, chaos mode) from env vars (separation of concerns; prep for docker)
+9. **Docker support** - containerize the app to simplify prerequisite installation
   - Dockerfile bundling Python/uv, Node.js and Playwright's Chromium binary
   - Update README.md (how to install & run via Docker)
-9. **Improved frontend** - introduce a react app for frontend responsibilities
-10. **Improved chaos engineering** - Toxiproxy looks propmising
+10. **Improved frontend** - introduce a react app for frontend responsibilities
+11. **Improved chaos engineering** - Toxiproxy looks propmising

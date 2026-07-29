@@ -1,4 +1,4 @@
-.PHONY: install run lint test api-test browser-test
+.PHONY: install run lint api-test browser-test
 
 install:
 	uv sync
