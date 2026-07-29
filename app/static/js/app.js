@@ -2,6 +2,7 @@ const form = document.getElementById("quote-form");
 const statusEl = document.getElementById("quote-status");
 const resultEl = document.getElementById("quote-result");
 const submitButton = form.querySelector("button[type=submit]");
+const apiKey = document.getElementById("apiKey");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -21,6 +22,7 @@ form.addEventListener("submit", async (event) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "api-key": apiKey.value,
       },
       body: JSON.stringify(payload),
     });

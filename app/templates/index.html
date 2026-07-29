@@ -7,6 +7,15 @@
   <body>
     <h1>Commission Quote</h1>
 
+    <div id="dev-mode" style="padding-bottom: 1em;">
+    <label for="apiKey">API Key</label>
+      <select id="apiKey" name="apiKey">
+        <option selected value="alice">Alice (no chaos)</option>
+        <option value="bob">Bob (chaotic)</option>
+        <option value="">(None)</option>
+      </select>
+    </div>
+
     <form id="quote-form">
       <label for="loanAmount">Loan Amount</label>
       <input type="number" id="loanAmount" name="loanAmount" min="0" step="1" required />
