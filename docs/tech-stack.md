@@ -11,7 +11,3 @@
 - playwright for browser tests
 - flake8 and black for python linting
 - eslint for javascript linting
-
-## Deployment
-
-Docker

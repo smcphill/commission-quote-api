@@ -3,7 +3,6 @@
 1. **Foundation** - project scaffolding and basic site shell
   - UV for python/flask
   - `GET /` that renders `<h1>Hello World</h1>
-  - Dockerized 
   - Makefile with a `make run` action
   - Update README.md (how to install & run)
 2. **Testing & linting** - unit and browser tests
