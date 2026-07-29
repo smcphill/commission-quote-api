@@ -5,7 +5,7 @@ Coding chalenge for Bendigo Bank
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) — manages the Python version and dependencies.
 - [Node.js](https://nodejs.org/) (includes `npm`/`npx`) — used to run ESLint via `npx eslint`.
-- Playwright's browser binaries — installed with a one-time `uv run playwright install chromium` (see Test section below). On Linux this may also prompt for OS packages; follow Playwright's on-screen instructions if so.
+- Playwright's browser binaries — installed automatically by `make install`. On Linux this may also prompt for OS packages; follow Playwright's on-screen instructions if so.
 
 ## Install
 
@@ -30,14 +30,6 @@ make lint
 Runs `flake8`, `black --check`, and `eslint` against `app/` and `tests/`.
 
 ## Test
-
-One-time setup, to install the Playwright browser used by the browser tests:
-
-```
-uv run playwright install chromium
-```
-
-Then:
 
 ```
 make test           # unit tests
