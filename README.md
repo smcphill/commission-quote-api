@@ -7,6 +7,8 @@ Coding chalenge for Bendigo Bank
 - [Node.js](https://nodejs.org/) (includes `npm`/`npx`) — used to run ESLint via `npx eslint`.
 - Playwright's browser binaries — installed automatically by `make install`. On Linux this may also prompt for OS packages; follow Playwright's on-screen instructions if so.
 
+`make install` runs `uv sync`, installs Playwright's Chromium browser, and runs `npm install` to install Node devDependencies (ESLint).
+
 ## Install
 
 ```

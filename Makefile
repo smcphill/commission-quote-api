@@ -3,6 +3,7 @@
 install:
 	uv sync
 	uv run playwright install chromium
+	npm install
 
 run:
 	uv run flask --app app.main run --port=5000
