@@ -12,7 +12,7 @@
   - eslint for javascript linting
   - Makefile actions: `make lint`, `make test`, `make api-test` and `make browser-test`
   - Add browser test
-  - Update README.md (how to lint & test)
+  - Update README.md (how to lint & test, and how to install pre-requisites)
 3. **API backend** - new route `POST /api/quote` (api-key requirement)
 4. **Security** - api-key presentation & validation
 5. **Functional frontend** - basic form that uses `fetch` to call the API with the required parameters

@@ -31,7 +31,7 @@ echo "exit: $?"   # expect 0
 Expect all three sub-checks (flake8, black --check, eslint) to report no issues. Intentionally break formatting in a scratch file first, confirm `make lint` fails (non-zero exit), then revert — this proves the target actually catches violations rather than silently passing.
 
 ## V5 — README accuracy (R6)
-- Manual check: on a clean clone (with Phase 1 already validated), follow the README's Lint and Test sections verbatim, including the one-time `playwright install` step. No undocumented steps should be needed.
+- Manual check: on a clean clone (with Phase 1 already validated), follow the README's Prerequisites, Lint, and Test sections verbatim, including installing `uv`, Node.js/npm, and the one-time `playwright install` step. No undocumented steps should be needed.
 
 ## Exit criteria for Phase 2
 All of V1–V5 pass, and `make lint`/`make test`/`make api-test`/`make browser-test` are all green on a clean checkout. This is the base that Phase 3 (`POST /api/quote`) will add tests against using the same patterns established here.

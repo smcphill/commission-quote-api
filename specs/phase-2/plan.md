@@ -67,7 +67,8 @@ Implements [requirements.md](requirements.md). Verified by [validation.md](valid
    ```
    - The `start in background, sleep, test, kill` pattern is a pragmatic choice for a 4-hour scope — acceptable here, but note it's a known flaky pattern (fixed sleep) if this were to be hardened later.
 
-7. **README** — update last, once targets are confirmed working.
+7. **README** — update last, once targets are confirmed working (R6).
+   - Add a "Prerequisites" section (before Lint/Test) covering: installing `uv`, installing Node.js/npm (needed for `npx eslint`), and the `uv run playwright install` step with any OS packages it may prompt for.
 
 ## Sequencing note
 Write the unit test first (fastest feedback, no server), confirm `make test` and `make lint` are green, then add API/browser tests which require the start/stop server choreography.

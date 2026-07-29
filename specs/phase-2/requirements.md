@@ -35,6 +35,7 @@ Depends on Phase 1 being complete ([../phase-1/validation.md](../phase-1/validat
 - All four targets declared `.PHONY`.
 
 ## R6 — README updated
+- Adds a "Prerequisites" section documenting how to install everything needed to run lint/test locally: `uv` itself, Node.js/npm (for `npx eslint`), and any OS-level packages Playwright's browser install needs.
 - Adds a "Lint" section documenting `make lint`.
 - Adds a "Test" section documenting `make test`, `make api-test`, `make browser-test`, including any one-time setup (e.g. `uv run playwright install`).
 
