@@ -14,10 +14,9 @@ I recently experimented with Spec Driven Development (SDD) and liked the up-fron
 
 Claude code was used for SDD for [roadmap](./docs/roadmap.md) phases 1 & 2, and also some minor out-of-phase work prior to phase 3 and beyond.
 
-### AI specs
-
 I curated spaces within `./specs` for phases 1 & 2 to facilitate the above. This was done with AI assistance.
 
+All work undertaken in conjunction with AI is committed with a co-author statement from Claude code.
 
 ## Prerequisites
 
