@@ -22,3 +22,4 @@
   - Dockerfile bundling Python/uv, Node.js and Playwright's Chromium binary
   - Update README.md (how to install & run via Docker)
 9. **Improved frontend** - introduce a react app for frontend responsibilities
+10. **Improved chaos engineering** - Toxiproxy looks propmising
