@@ -13,6 +13,10 @@ lint:
 	uv run black --check app tests
 	npx eslint .
 
+fix-lint:
+	uv run black app tests
+	npx eslint --fix .
+
 test:
 	uv run pytest tests/unit
 

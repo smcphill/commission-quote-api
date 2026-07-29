@@ -59,6 +59,14 @@ make lint
 
 Runs `flake8`, `black --check`, and `eslint` against `app/` and `tests/`.
 
+### Auto fix
+
+```
+make fix-lint
+```
+
+Fixes linting issues found by eslint/black
+
 ### Test
 
 ```
