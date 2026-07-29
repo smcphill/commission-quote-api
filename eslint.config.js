@@ -14,6 +14,7 @@ module.exports = [
         window: "readonly",
         document: "readonly",
         console: "readonly",
+        fetch: "readonly",
       },
     },
   },
