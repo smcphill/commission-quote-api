@@ -1,21 +1,44 @@
 # commission-quote-api
 Coding chalenge for Bendigo Bank
 
+## Approach
+
+I recently experimented with Spec Driven Development (SDD) and liked the up-front context gathering it employs. These artifacts live under `./docs`:
+
+- [mission.md](./docs/mission.md) - a digest of the provided `hiring-full-stack coding challenge.pdf`
+- [roadmap.md](./docs/roadmap.md) - a development and delivery roadmap
+- [tech-stack.md](./docs/tech-stack.md) - describes the language, frameworks and packages used
+
+
+## AI Usage
+
+Claude code was used for SDD for [roadmap](./docs/roadmap.md) phases 1 & 2, and also some minor out-of-phase work prior to phase 3 and beyond.
+
+### AI specs
+
+I curated spaces within `./specs` for phases 1 & 2 to facilitate the above. This was done with AI assistance.
+
+
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) — manages the Python version and dependencies.
 - [Node.js](https://nodejs.org/) (includes `npm`/`npx`) — used to run ESLint via `npx eslint`.
 - Playwright's browser binaries — installed automatically by `make install`. On Linux this may also prompt for OS packages; follow Playwright's on-screen instructions if so.
 
-`make install` runs `uv sync`, installs Playwright's Chromium browser, and runs `npm install` to install Node devDependencies (ESLint).
+## Makefile actions
 
-## Install
+A `Makefile` has been provided to simplify development operations and running the app.
+
+### Install
 
 ```
 make install
 ```
 
-## Run
+- runs `uv sync` and `npm install`, and installs Playwright's Chromium browser
+
+
+### Run
 
 ```
 make run
@@ -23,7 +46,7 @@ make run
 
 The app will be available at http://localhost:5000/.
 
-## Lint
+### Lint
 
 ```
 make lint
@@ -31,7 +54,7 @@ make lint
 
 Runs `flake8`, `black --check`, and `eslint` against `app/` and `tests/`.
 
-## Test
+### Test
 
 ```
 make test           # unit tests
