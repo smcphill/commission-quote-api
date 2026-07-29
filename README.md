@@ -61,3 +61,11 @@ make test           # unit tests
 make api-test       # API tests against a running instance of the app
 make browser-test   # browser tests against a running instance of the app
 ```
+#### ℹ️ erroneous 'error' reported on successful runs
+
+API and browser tests will issue `make[1]: *** [run] Error 143` upon completion. This can be ignored. 
+
+This comes about from the changes made to the Makefile in 9d709870f933a1c131427bd95e9b1a5a191c66a3 due to the way the test server is initialised.
+
+TODO A fix would be the leverage pytest's `conftest.py` setup.
+

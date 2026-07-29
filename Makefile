@@ -17,11 +17,13 @@ test:
 	uv run pytest tests/unit
 
 api-test:
-	$(MAKE) run &
-	sleep 2
-	uv run pytest tests/api; kill %1
+	$(MAKE) run & pid=$$!; \
+	trap 'kill $$pid' EXIT; \
+	sleep 2; \
+	uv run pytest tests/api
 
 browser-test:
-	$(MAKE) run &
-	sleep 2
-	uv run pytest tests/browser; kill %1
+	$(MAKE) run & pid=$$!; \
+	trap 'kill $$pid' EXIT; \
+	sleep 2; \
+	uv run pytest tests/browser
