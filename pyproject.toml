@@ -1,0 +1,12 @@
+[project]
+name = "commission-quote-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Steven McPhillips", email = "steven.mcphillips@gmail.com" }
+]
+requires-python = "==3.12.13"
+dependencies = [
+    "flask>=3.1.3",
+]
