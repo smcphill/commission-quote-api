@@ -21,7 +21,7 @@ Expect the target to start the app, run `tests/api/`, report ≥1 passed, and le
 make browser-test
 echo "exit: $?"   # expect 0
 ```
-Expect ≥1 passed test in `tests/browser/`, confirming the `<h1>Hello World</h1>` renders in a real Chromium context.
+Expect ≥1 passed test in `tests/browser/`, confirming the page rendered from `app/templates/index.html` contains an `<h1>` element with text `Hello World` in a real Chromium context.
 
 ## V4 — Linting (R3, R4)
 ```

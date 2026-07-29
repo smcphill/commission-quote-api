@@ -20,6 +20,9 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
+# Node / eslint
+node_modules/
+
 # Editors
 .vscode/
 .idea/

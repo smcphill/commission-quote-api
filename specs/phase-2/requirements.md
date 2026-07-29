@@ -7,8 +7,8 @@ Depends on Phase 1 being complete ([../phase-1/validation.md](../phase-1/validat
 - `tests/` directory at repo root, containing at least:
   - `tests/unit/` — unit-level tests (no live server required).
   - `tests/api/` — tests using the `requests` library against a running instance of the app.
-- At least one unit test asserting the `/` view function returns the expected body string.
-- At least one API test: start the app (via pytest fixture, e.g. `flask.testing` test client, or subprocess + `requests`), assert `GET /` returns status `200` and body `<h1>Hello World</h1>`.
+- At least one unit test asserting the `/` view function's response contains `<h1>Hello World</h1>` (the view renders a full HTML template via `render_template`/`url_for`, so the body is not that string alone).
+- At least one API test: start the app (via pytest fixture, e.g. `flask.testing` test client, or subprocess + `requests`), assert `GET /` returns status `200` and a body containing `<h1>Hello World</h1>`.
 - `pytest` is a dependency declared in `pyproject.toml` under a `dev`/`test` dependency group.
 - Running `pytest tests/unit` and `pytest tests/api` each exit `0` with all tests passing.
 
@@ -24,8 +24,9 @@ Depends on Phase 1 being complete ([../phase-1/validation.md](../phase-1/validat
 - `black --check app tests` exits `0` (no formatting diffs) against the current codebase.
 
 ## R4 — eslint for JavaScript linting
-- `.eslintrc` (or `eslint.config.js`) at repo root or in the frontend asset directory.
-- Applies even though Phase 2 has no JS yet — config must exist and be runnable (`eslint .` exits `0` on an empty/placeholder JS tree), so later phases have linting in place from the start.
+- `eslint.config.js` at repo root (flat config — the `npx`-installed ESLint version requires this format over legacy `.eslintrc`).
+- Scoped to `app/static/js/**/*.js`, the app's static JS directory (`app/main.py`'s `index` view renders `app/templates/index.html`, which references `app/static/js/app.js` via `url_for('static', filename=...)`).
+- `eslint .` exits `0` against the current codebase.
 
 ## R5 — Makefile targets
 - `lint` — runs `flake8`, `black --check`, and `eslint`, in that order; fails (non-zero exit) if any fail.

@@ -8,9 +8,17 @@ Implements [requirements.md](requirements.md). Verified by [validation.md](valid
 .
 ├── .flake8
 ├── pyproject.toml          # updated: dev deps + black/pytest config
-├── .eslintrc.json
+├── eslint.config.js
+├── package.json             # eslint pulled in via npx/npm
 ├── Makefile                # updated: lint, test, api-test, browser-test
 ├── README.md                # updated
+├── app/
+│   ├── main.py               # updated: render_template instead of returning a string
+│   ├── templates/
+│   │   └── index.html
+│   └── static/
+│       └── js/
+│           └── app.js
 └── tests/
     ├── unit/
     │   └── test_app.py
@@ -27,11 +35,11 @@ Implements [requirements.md](requirements.md). Verified by [validation.md](valid
    - `uv run playwright install chromium` (document as manual one-time step; not required for `make lint`/`make test`).
 
 2. **Unit test** (R1)
-   - `tests/unit/test_app.py`: import `app` from `app.main`, use Flask's built-in test client (`app.test_client()`), assert status 200 and body on `GET /`.
+   - `tests/unit/test_app.py`: import `app` from `app.main`, use Flask's built-in test client (`app.test_client()`), assert status 200 and that `<h1>Hello World</h1>` is contained in the body on `GET /` (the view renders `app/templates/index.html`, so the body is a full HTML page, not that string alone).
    - This does not require a running server — fast, no network.
 
 3. **API test** (R1)
-   - `tests/api/test_hello_world_api.py`: use `requests.get("http://localhost:5000/")` against a live instance.
+   - `tests/api/test_hello_world_api.py`: use `requests.get("http://localhost:5000/")` against a live instance, assert `<h1>Hello World</h1>` is contained in the response text.
    - Fixture assumption: the `api-test` Makefile target is responsible for starting the app before pytest and stopping it after — the test itself just assumes `localhost:5000` is reachable.
 
 4. **Browser test** (R2)
@@ -41,7 +49,7 @@ Implements [requirements.md](requirements.md). Verified by [validation.md](valid
 5. **Linting config** (R3, R4)
    - `.flake8`: `max-line-length = 88`, exclude `.venv`.
    - `black` config via `[tool.black]` in `pyproject.toml`, `line-length = 88`.
-   - `.eslintrc.json`: minimal recommended ruleset (`eslint:recommended`), `env.browser = true`. Create a placeholder `static/js/.gitkeep` or similar if no JS exists yet, so `eslint .` has a defined (empty) target rather than erroring on "no files found" — alternatively scope `eslint` to a `static/` glob that's allowed to match zero files.
+   - `eslint.config.js`: flat config, ignores `.venv/**` and `node_modules/**`; recommended ruleset (`@eslint/js`'s `recommended`) scoped to `app/static/js/**/*.js` with browser globals (`window`, `document`, `console`). `app/static/js/app.js` is a real (not placeholder) file, referenced from `app/templates/index.html` via `url_for('static', filename='js/app.js')`, so the glob has actual content to lint. `package.json` pins `eslint`/`@eslint/js` as devDependencies so `npx eslint` resolves a consistent version.
 
 6. **Makefile targets** (R5)
    ```makefile
