@@ -80,7 +80,7 @@ def enact_chaos():
 
 
 def generate_quote(request: QuoteRequest) -> dict:
-    # Quote generation logic
+    # Quote generation logic. `QuoteRequest.riskBand`` is not used in the calculation.
     return {
         "quoteId": uuid.uuid4().hex,
         "commissionRate": COMMISSION_RATE,
