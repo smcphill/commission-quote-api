@@ -28,3 +28,11 @@ Remediation items:
 ## Migraine strikes
 
 Unfortunately, I suffered from a migraine from early Friday until Sunday, which has delayed any action. Even so, I plan to at least share this self review and implement my identified remediation items.
+
+# Execution
+
+## Risk band
+
+Quote derivation does not use the supplied risk band. While the current implementation is very straightforward, the underlying intention is lacking: was this an oversight or by design?
+
+Unit tests are a great way to show intent of the subject [under test]. I've chosen this approach to showing my intent that right now, the risk band does not factor into the total commission for the quote.
