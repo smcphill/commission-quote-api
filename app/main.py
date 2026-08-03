@@ -55,6 +55,7 @@ def request_quote():
     try:
         quote_request = QuoteRequest(**data)
     except ValidationError as e:
+        # TODO this implememtation is fairly magical. Revisit Pydantic Validators, and implement a more robust error presenter
         invalid_fields = [err["loc"][0] for err in e.errors()]
         return jsonify({"error": f"Invalid {', '.join(invalid_fields)}"}), 400
 
@@ -99,6 +100,7 @@ def enact_chaos(requested: bool):
 
 def generate_quote(request: QuoteRequest) -> dict:
     # Quote generation logic. `QuoteRequest.riskBand`` is not used in the calculation.
+    # TODO: this should be extracted into a separate concern (e.g. app.quote_generator)
     return {
         "quoteId": uuid.uuid4().hex,
         "commissionRate": COMMISSION_RATE,
