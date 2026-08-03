@@ -36,3 +36,11 @@ Unfortunately, I suffered from a migraine from early Friday until Sunday, which 
 Quote derivation does not use the supplied risk band. While the current implementation is very straightforward, the underlying intention is lacking: was this an oversight or by design?
 
 Unit tests are a great way to show intent of the subject [under test]. I've chosen this approach to showing my intent that right now, the risk band does not factor into the total commission for the quote.
+
+## Chaos mode
+
+The initial implementation overloaded the api key concept with chaos mode: api keys could be defined as 'chaotic'. I had discounted the option of "chaos for all" via an environmental toggle (e.g. when `env == DEVELOPMENT`) as I really value being able to inject a "poison pill" type request into an abrtitrary runtime under controlled conditions. 
+
+This can yeild great insight, especially when dealing with distributed systems or crossing substantial system boundaries.
+
+To that point, the API now determines whether the request is 'chaotic' via a HTTP request header: `X-Bendigo-Chaos'. This check is performed after the api key has been validated.

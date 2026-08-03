@@ -1,8 +1,19 @@
+const API_KEY = "alice";
 const form = document.getElementById("quote-form");
 const statusEl = document.getElementById("quote-status");
 const resultEl = document.getElementById("quote-result");
 const submitButton = form.querySelector("button[type=submit]");
 const apiKey = document.getElementById("apiKey");
+const devView = document.getElementById("dev-mode");
+const chaosMode = document.getElementById("chaosMode");
+
+
+window.addEventListener("load", _event => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("use") === "dev") {
+      devView.removeAttribute('hidden');
+    }
+});
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -17,13 +28,16 @@ form.addEventListener("submit", async (event) => {
   statusEl.textContent = "Generating quote…";
   submitButton.disabled = true;
 
+  const baseHeaders = {
+        "Content-Type": "application/json",
+        "api-key": apiKey.value === "" ? API_KEY : apiKey.value,
+  };
+  const chaosHeader = chaosMode.checked ? { "X-Bendigo-Chaos": true} : {};
+
   try {
     const response = await fetch("/api/quote", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": apiKey.value,
-      },
+      headers: { ...baseHeaders, ...chaosHeader},
       body: JSON.stringify(payload),
     });
 

@@ -45,6 +45,14 @@ make run
 
 The app will be available at http://localhost:5000/.
 
+#### Enabling chaos mode
+
+When accessed via http://localhost:5000/?use=dev, the UI will provide the option to enable chaos mode. This injects `X-Bendigo-Chaos: true` into the HTTP request header.
+
+#### BYO API Key
+
+When accessed via http://localhost:5000/?use=dev, the UI will provide the option to supply your own API key.
+
 #### Runtime constraints
 
 - Loan amount: $1,000 - $5,000,000

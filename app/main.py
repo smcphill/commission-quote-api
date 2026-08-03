@@ -8,9 +8,10 @@ import uuid
 app = Flask(__name__)
 
 COMMISSION_RATE = 0.1  # Flat commission rate for all quotes
-CHAOS_RATE = 0.8
 VALID_API_KEYS = ["alice", "bob"]
-CHAOTIC_API_KEY = "bob"
+DISALLOWED_API_KEYS = ["brad", "janet"]
+CHAOS_RATE = 0.8
+CHAOS_MODE_HEADER = "X-Bendigo-Chaos"
 
 
 class QuoteRequest(BaseModel):
@@ -28,7 +29,7 @@ def index():
 @app.route("/api/quote", methods=["POST"])
 def request_quote():
     ensure_valid_api_key()
-    chaos_mode = request.headers["api-key"] == CHAOTIC_API_KEY
+    chaos_mode = request.headers.get(CHAOS_MODE_HEADER) == "true"
     if chaos_mode:
         enact_chaos()
 
@@ -58,22 +59,23 @@ def handle_unexpected_error(error):
 
 
 def ensure_valid_api_key():
-    api_key_payload = request.headers.get("api-key", [])
     # Validate API key
-    if api_key_payload not in VALID_API_KEYS:
+    # TODO: make this Flask middleware.
+    api_key_payload = request.headers.get("api-key", [])
+    if api_key_payload not in VALID_API_KEYS or api_key_payload in DISALLOWED_API_KEYS:
         abort(401)
 
 
 def enact_chaos():
-    # Chaos mode logic
+    # according to the CHAOS_RATE, simulate a server or connection reset error
     random_value = random.random()
     if random_value < CHAOS_RATE:
 
-        if random_value < 0.3:
-            # Simulate a server error
+        # 50% of the time, simulate a server error
+        if random_value < CHAOS_RATE / 2:
             abort(500)
 
-        # Otherwise, close the underlying socket to simulate a connection reset
+        # 50% of the time, simulate a connection reset (close the underlying socket)
         socket_obj = request.environ.get("wsgi.input").raw._sock
         socket_obj.shutdown(2)  # 2 = SHUT_RDWR (disables reads and writes)
         socket_obj.close()

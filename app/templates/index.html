@@ -7,13 +7,11 @@
   <body>
     <h1>Commission Quote</h1>
 
-    <div id="dev-mode" style="padding-bottom: 1em;">
-    <label for="apiKey">API Key</label>
-      <select id="apiKey" name="apiKey">
-        <option selected value="alice">Alice (no chaos)</option>
-        <option value="bob">Bob (chaotic)</option>
-        <option value="">(None)</option>
-      </select>
+    <div id="dev-mode" hidden style="padding-bottom: 1em;">
+    <label for="chaosMode">Chaos Mode</label>
+      <input id="chaosMode" name="chaosMode" type="checkbox" />
+    <label for="apiKey" title="Leave blank to use system-sourced API key">Override API Key</label>
+      <input id="apiKey" name="apiKey" length="100" />
     </div>
 
     <form id="quote-form">
