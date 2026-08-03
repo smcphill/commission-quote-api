@@ -18,6 +18,15 @@ I curated spaces within `./specs` for phases 1 & 2 to facilitate the above. This
 
 All work undertaken in conjunction with AI is committed with a co-author statement from Claude code.
 
+### Self Review findings
+
+One area I did not use AI for was reviewing my initial implementation. In hindsight this was a substantial oversight: I could have caught a lot of implementation gaps prior to submitting.
+
+I also neglected to highlight additional benefits of sdd in content engineering:
+
+- The documented artifacts (`./docs` and `./specs`) provide excellent context for future engagement.
+- `./docs` can be used as a bit of a North Star Architecture: the value is not just about establishing context early, but continuously reviewing the mission and roadmap based on accrued learnings and changes to business and customer needs.
+
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) — manages the Python version and dependencies.

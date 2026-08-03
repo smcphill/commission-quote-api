@@ -50,3 +50,7 @@ To that point, the API now determines whether the request is 'chaotic' via a HTT
 Separating code from configuration is a sensible approach to mature software development: some config may benefit from different values in different deployments, and the resulting code is cleaner with less cognitive burden in reading the logic without needing to reason about bare 'magical' values.
 
 The initial implementation hoisted some config as inline constants. As part of this self review, I also included the risk bands: these are used in defining valid risk bands for for `QuoteRequest`, and in rendering the main app.
+
+# AI Usage
+
+A big miss was not leveraging AI to review my initial submission. Had I done so, I wouldn't have needed to raise a pull request to remediate issues I found in self review after the fact.
