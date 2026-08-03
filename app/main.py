@@ -13,6 +13,7 @@ config = dotenv_values(".env")
 COMMISSION_RATE: float = float(config.get("COMMISSION_RATE", 0))
 CHAOS_RATE: float = float(config.get("CHAOS_RATE", 0))
 CHAOS_MODE_HEADER: str = config.get("CHAOS_MODE_HEADER", "")
+CHAOS_MODE: bool = config.get("CHAOS_MODE", "false").lower() == "true"
 
 # TODO DRY up sourcing lists from config
 VALID_API_KEYS: list = [
@@ -45,9 +46,7 @@ def index():
 @app.route("/api/quote", methods=["POST"])
 def request_quote():
     ensure_valid_api_key()
-    chaos_mode = request.headers.get(CHAOS_MODE_HEADER) == "true"
-    if chaos_mode:
-        enact_chaos()
+    enact_chaos(requested=request.headers.get(CHAOS_MODE_HEADER) == "true")
 
     data = request.get_json()
     if not data:
@@ -82,10 +81,11 @@ def ensure_valid_api_key():
         abort(401)
 
 
-def enact_chaos():
-    # according to the CHAOS_RATE, simulate a server or connection reset error
+def enact_chaos(requested: bool):
+    # as per CHAOS MODE and `requested`, simulate a server or connection reset error
+    # TODO: extract this into a separate concern (e.g. app.chaos)
     random_value = random.random()
-    if random_value < CHAOS_RATE:
+    if CHAOS_MODE or (requested and random_value < CHAOS_RATE):
 
         # 50% of the time, simulate a server error
         if random_value < CHAOS_RATE / 2:

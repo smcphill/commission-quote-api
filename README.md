@@ -47,7 +47,11 @@ The app will be available at http://localhost:5000/.
 
 #### Enabling chaos mode
 
+Under chaos mode, requests will randomly fail (either with a simulated server error or connection failure).
+
 When accessed via http://localhost:5000/?use=dev, the UI will provide the option to enable chaos mode. This injects `X-Bendigo-Chaos: true` into the HTTP request header.
+
+Alternatively, the api will enable choas mode with a `CHAOS_MODE=true` env var.
 
 #### BYO API Key
 
