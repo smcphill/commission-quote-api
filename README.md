@@ -18,6 +18,15 @@ I curated spaces within `./specs` for phases 1 & 2 to facilitate the above. This
 
 All work undertaken in conjunction with AI is committed with a co-author statement from Claude code.
 
+### Self Review findings
+
+One area I did not use AI for was reviewing my initial implementation. In hindsight this was a substantial oversight: I could have caught a lot of implementation gaps prior to submitting.
+
+I also neglected to highlight additional benefits of sdd in content engineering:
+
+- The documented artifacts (`./docs` and `./specs`) provide excellent context for future engagement.
+- `./docs` can be used as a bit of a North Star Architecture: the value is not just about establishing context early, but continuously reviewing the mission and roadmap based on accrued learnings and changes to business and customer needs.
+
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) — manages the Python version and dependencies.
@@ -45,6 +54,18 @@ make run
 
 The app will be available at http://localhost:5000/.
 
+#### Enabling chaos mode
+
+Under chaos mode, requests will randomly fail (either with a simulated server error or connection failure).
+
+When accessed via http://localhost:5000/?use=dev, the UI will provide the option to enable chaos mode. This injects `X-Bendigo-Chaos: true` into the HTTP request header.
+
+Alternatively, the api will enable choas mode with a `CHAOS_MODE=true` env var.
+
+#### BYO API Key
+
+When accessed via http://localhost:5000/?use=dev, the UI will provide the option to supply your own API key.
+
 #### Runtime constraints
 
 - Loan amount: $1,000 - $5,000,000
@@ -70,6 +91,7 @@ Fixes linting issues found by eslint/black
 ### Test
 
 ```
+make test           # unit tests
 make api-test       # API tests against a running instance of the app
 make browser-test   # browser tests against a running instance of the app
 ```
