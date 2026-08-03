@@ -23,10 +23,9 @@
 
       <label for="riskBand">Risk Band</label>
       <select id="riskBand" name="riskBand" required>
-        <option value="BELOW_AVERAGE">Below Average</option>
-        <option value="AVERAGE">Average</option>
-        <option value="VERY_GOOD">Very Good</option>
-        <option value="EXCELLENT">Excellent</option>
+        {% for item in risk_bands %}
+          <option value="{{ item }}">{{ item.replace('_', ' ') | title  }}</option>
+        {% endfor %}
       </select>
 
       <button type="submit">Generate Quote</button>

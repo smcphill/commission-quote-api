@@ -1,3 +1,4 @@
+from dotenv import dotenv_values
 from flask import Flask, abort, jsonify, render_template, request
 from werkzeug.exceptions import HTTPException
 from pydantic import BaseModel, Field, ValidationError
@@ -7,23 +8,38 @@ import uuid
 
 app = Flask(__name__)
 
-COMMISSION_RATE = 0.1  # Flat commission rate for all quotes
-VALID_API_KEYS = ["alice", "bob"]
-DISALLOWED_API_KEYS = ["brad", "janet"]
-CHAOS_RATE = 0.8
-CHAOS_MODE_HEADER = "X-Bendigo-Chaos"
+# TODO extract config into its own concern (app.config)
+config = dotenv_values(".env")
+COMMISSION_RATE: float = float(config.get("COMMISSION_RATE", 0))
+CHAOS_RATE: float = float(config.get("CHAOS_RATE", 0))
+CHAOS_MODE_HEADER: str = config.get("CHAOS_MODE_HEADER", "")
+
+# TODO DRY up sourcing lists from config
+VALID_API_KEYS: list = [
+    value.strip()
+    for value in config.get("VALID_API_KEYS", "").split(",")
+    if value.strip()
+]
+DISALLOWED_API_KEYS: list = [
+    value.strip()
+    for value in config.get("DISALLOWED_API_KEYS", "").split(",")
+    if value.strip()
+]
+RISK_BANDS: list = [
+    value.strip() for value in config.get("RISK_BANDS", "").split(",") if value.strip()
+]
 
 
 class QuoteRequest(BaseModel):
     # Quote request schema
     loanAmount: int = Field(..., ge=1000, le=5000000)
     loanTermInMonths: int = Field(..., ge=1, le=240)
-    riskBand: Literal["BELOW_AVERAGE", "AVERAGE", "VERY_GOOD", "EXCELLENT"]
+    riskBand: Literal[tuple(RISK_BANDS)]
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", risk_bands=RISK_BANDS)
 
 
 @app.route("/api/quote", methods=["POST"])

@@ -9,7 +9,7 @@ The thoughts didn't stop though. The following day I pulled at that thread of th
 
 ## Action
 
-I realised I could take action: it's my repsitory after all! 
+I realised I could take action: it's my repsitory after all!
 
 **Key Problems:** Showing intent; conflated concerns; service isolation
 
@@ -39,8 +39,14 @@ Unit tests are a great way to show intent of the subject [under test]. I've chos
 
 ## Chaos mode
 
-The initial implementation overloaded the api key concept with chaos mode: api keys could be defined as 'chaotic'. I had discounted the option of "chaos for all" via an environmental toggle (e.g. when `env == DEVELOPMENT`) as I really value being able to inject a "poison pill" type request into an abrtitrary runtime under controlled conditions. 
+The initial implementation overloaded the api key concept with chaos mode: api keys could be defined as 'chaotic'. I had discounted the option of "chaos for all" via an environmental toggle (e.g. when `env == DEVELOPMENT`) as I really value being able to inject a "poison pill" type request into an abrtitrary runtime under controlled conditions.
 
 This can yeild great insight, especially when dealing with distributed systems or crossing substantial system boundaries.
 
 To that point, the API now determines whether the request is 'chaotic' via a HTTP request header: `X-Bendigo-Chaos'. This check is performed after the api key has been validated.
+
+# Source from config
+
+Separating code from configuration is a sensible approach to mature software development: some config may benefit from different values in different deployments, and the resulting code is cleaner with less cognitive burden in reading the logic without needing to reason about bare 'magical' values.
+
+The initial implementation hoisted some config as inline constants. As part of this self review, I also included the risk bands: these are used in defining valid risk bands for for `QuoteRequest`, and in rendering the main app.
